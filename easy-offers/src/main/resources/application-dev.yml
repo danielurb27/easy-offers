@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/easy_offers_db
+    username: easy_user
+    password: easy_password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: EasyOffersPool
+      maximum-pool-size: 5
+      minimum-idle: 2
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    com.easy.offers: DEBUG
+    org.hibernate.SQL: DEBUG
