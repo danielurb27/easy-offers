@@ -1,31 +1,46 @@
 spring:
   application:
-    name: easy-offers
+    name: easy-offers # Nombre de la aplicación (útil para logs, microservicios, etc)
+
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
+    # Perfil activo.
+    # Si existe variable de entorno SPRING_PROFILES_ACTIVE → la usa
+    # Si no → usa "dev" por defecto
+
   jpa:
     hibernate:
       ddl-auto: validate
+      # Hibernate valida que las tablas coincidan con las entidades
+      # NO crea ni modifica tablas (modo seguro para producción)
+
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        # Le dice a Hibernate que estás usando PostgreSQL
         format_sql: true
+        # Formatea SQL para que sea legible en logs
     show-sql: false
+    # No muestra SQL en consola
   flyway:
-    enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
+    enabled: true # Activa migraciones de base de datos
+    locations: classpath:db/migration # Carpeta donde están los scripts SQL
+    baseline-on-migrate: true # Permite usar Flyway en BD ya existente
 
 jwt:
   secret: ${JWT_SECRET:dev-secret-key-change-in-production-min-256-bits}
+  # Clave secreta para firmar tokens JWT
+  # En producción debe ser larga y segura
   expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  # Tiempo de expiración del token (en milisegundos)
+  # 86400000 ms = 24 horas
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8080} # Puerto del servidor
   error:
-    include-stacktrace: never
-    include-message: always
+    include-stacktrace: never # Nunca mostrar stacktrace al cliente (seguridad)
+    include-message: always # Mostrar mensaje de error controlado
 
 logging:
   level:
-    com.easy.offers: INFO
+    com.easy.offers: INFO # Nivel de logs para tu paquete principal

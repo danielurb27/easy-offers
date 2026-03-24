@@ -1,17 +1,17 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/easy_offers_db
+    url: jdbc:postgresql://localhost:5433/easy_offers_db # Conexión a PostgreSQL local
     username: easy_user
     password: easy_password
     driver-class-name: org.postgresql.Driver
     hikari:
-      pool-name: EasyOffersPool
-      maximum-pool-size: 5
-      minimum-idle: 2
+      pool-name: EasyOffersPool # Nombre del pool de conexiones
+      maximum-pool-size: 5 # Máximo conexiones simultáneas
+      minimum-idle: 2 # Conexiones mínimas siempre abiertas
   jpa:
-    show-sql: true
+    show-sql: true # En dev sí se muestra SQL para debug
 
 logging:
   level:
-    com.easy.offers: DEBUG
-    org.hibernate.SQL: DEBUG
+    com.easy.offers: DEBUG # Logs detallados en desarrollo
+    org.hibernate.SQL: DEBUG # Muestra SQL ejecutado por Hibernate

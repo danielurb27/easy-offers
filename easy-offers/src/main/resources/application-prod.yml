@@ -3,14 +3,16 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    # Credenciales vienen de variables de entorno (seguridad)
+
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 20
+      maximum-pool-size: 20 # Más conexiones para alto tráfico
       minimum-idle: 5
   jpa:
-    show-sql: false
+    show-sql: false # No mostrar SQL en producción
 
 logging:
   level:
-    com.easy.offers: WARN
-    root: ERROR
+    com.easy.offers: WARN # Solo advertencias o errores
+    root: ERROR # El resto del sistema solo errores críticos
